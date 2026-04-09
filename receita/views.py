@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Receita, Categoria
+from .forms import ReceitaForm
 
 # Create your views here.
 def receitas(request):
@@ -13,3 +14,14 @@ def detalhes_receita(request, id_receita):
     context = {'receita': receita}
 
     return render(request, 'detalhes_receita.html', context)
+
+def nova_receita(request):
+    if request.method == 'POST':
+        form = ReceitaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(receitas)
+    else:
+        form=ReceitaForm()
+    
+    return render(request, 'nova_receita.html', {'form': form})
