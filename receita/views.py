@@ -36,7 +36,7 @@ def editar_receita(request, id_receita):
             form.save()
             messages.success(request, 'Receita editada!')
             return redirect('receitas')
-        else:
-            form = ReceitaForm(instance=receita)
+    else:
+        form = ReceitaForm(instance=receita)
 
-    return render(request, 'nova_receita.html', {'form':form, 'editar': True})
+    return render(request, 'nova_receita.html', {'form': form, 'editar': True})

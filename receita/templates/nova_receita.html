@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Nova Receita</h1>
+    <h1>{% if editar %}Editar{% else %}Nova{% endif %} Receita</h1>
     <form method="post">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Salvar</button>
+        <button type="submit">{% if editar %}Editar{% else %}Salvar{% endif %}</button>
     </form>
 </body>
 </html>
